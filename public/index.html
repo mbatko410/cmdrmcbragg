@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Commander McBragg</title>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #000; /* Black background */
+            color: #ffa500; /* Orange text color */
+        }
+
+        /* Header styling */
+        h1 {
+            color: #ffa500; /* Orange text for header */
+            margin-bottom: 30px;
+        }
+
+        /* Button styling */
+        #show-tweet-button {
+            background-color: #ffa500; /* Orange background */
+            color: #000; /* Black text */
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        #show-tweet-button:hover {
+            background-color: #ff8c00; /* Darker orange on hover */
+        }
+
+        /* Tweet display container */
+        #tweet-display {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center; /* Centers the tweet horizontally */
+            align-items: center; /* Centers the tweet vertically within the div */
+            min-height: 200px; /* Ensures space is reserved for the tweet */
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 50px;
+            color: #ffa500; /* Orange text */
+            font-size: 14px;
+        }
+
+        /* Link styling */
+        a {
+            color: #ffa500; /* Orange links */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Commander McBragg Has Done It All</h1>
+    <button id="show-tweet-button">Did I ever tell you about the time...</button>
+    <div id="tweet-display"></div>
+    <footer>
+        by batko
+    </footer>
+    <script>
+        // Array of tweets
+        const tweets = [
+        "https://twitter.com/cmdrmcbragg/status/1505605339584114697",
+    "https://twitter.com/cmdrmcbragg/status/1401317975848857604",
+    "https://twitter.com/cmdrmcbragg/status/1401310772433727490",
+    "https://twitter.com/cmdrmcbragg/status/1401299534056202243",
+    "https://twitter.com/cmdrmcbragg/status/1248023444387762181",
+    "https://twitter.com/cmdrmcbragg/status/1245117145064882176",
+    "https://twitter.com/cmdrmcbragg/status/1202283331792060417",
+    "https://twitter.com/cmdrmcbragg/status/1173022332601942016",
+    "https://twitter.com/cmdrmcbragg/status/1097610622831857665",
+    "https://twitter.com/cmdrmcbragg/status/1097610433681346560",
+    "https://twitter.com/cmdrmcbragg/status/1097595898677395456",
+    "https://twitter.com/cmdrmcbragg/status/1097573935451983872",
+    "https://twitter.com/cmdrmcbragg/status/887120575788986368",
+    "https://twitter.com/cmdrmcbragg/status/887117154566496256",
+    "https://twitter.com/cmdrmcbragg/status/808884892788473856",
+    "https://twitter.com/cmdrmcbragg/status/808862858968780800",
+    "https://twitter.com/cmdrmcbragg/status/808862285007585281",
+    "https://twitter.com/cmdrmcbragg/status/808841983036944384",
+    "https://twitter.com/cmdrmcbragg/status/588823175888183296",
+    "https://twitter.com/cmdrmcbragg/status/573947773084524544",
+    "https://twitter.com/cmdrmcbragg/status/572805263834673156",
+    "https://twitter.com/cmdrmcbragg/status/563305031227568128",
+    "https://twitter.com/cmdrmcbragg/status/563079297075011584",
+    "https://twitter.com/cmdrmcbragg/status/562262794884898816",
+    "https://twitter.com/cmdrmcbragg/status/562189444003147777",
+    "https://twitter.com/cmdrmcbragg/status/545253871338414080",
+    "https://twitter.com/cmdrmcbragg/status/511685380056547328",
+    "https://twitter.com/cmdrmcbragg/status/509376998184349696",
+    "https://twitter.com/cmdrmcbragg/status/497116325513543680",
+    "https://twitter.com/cmdrmcbragg/status/497064376554504192",
+    "https://twitter.com/cmdrmcbragg/status/496347753937907712",
+    "https://twitter.com/cmdrmcbragg/status/493204804903006208",
+    "https://twitter.com/cmdrmcbragg/status/492757989233680384",
+    "https://twitter.com/cmdrmcbragg/status/492746303571369984",
+    "https://twitter.com/cmdrmcbragg/status/492741433539825668",
+    "https://twitter.com/cmdrmcbragg/status/492735513976008705",
+    "https://twitter.com/cmdrmcbragg/status/492525860386127872",
+    "https://twitter.com/cmdrmcbragg/status/492523204464746496",
+    "https://twitter.com/cmdrmcbragg/status/492408699689127936",
+    "https://twitter.com/cmdrmcbragg/status/492039522889515008",
+    "https://twitter.com/cmdrmcbragg/status/486963544811118592",
+    "https://twitter.com/cmdrmcbragg/status/482282732828258305",
+    "https://twitter.com/cmdrmcbragg/status/482282326807040001",
+    "https://twitter.com/cmdrmcbragg/status/463789764504596480",
+    "https://twitter.com/cmdrmcbragg/status/458731050211246080",
+    "https://twitter.com/cmdrmcbragg/status/452185063480754176",
+    "https://twitter.com/cmdrmcbragg/status/451429740230893568",
+    "https://twitter.com/cmdrmcbragg/status/422816805866856448",
+    "https://twitter.com/cmdrmcbragg/status/402587707257667584",
+    "https://twitter.com/cmdrmcbragg/status/398204881049518080",
+    "https://twitter.com/cmdrmcbragg/status/397482976943951873",
+    "https://twitter.com/cmdrmcbragg/status/395563585880870912",
+    "https://twitter.com/cmdrmcbragg/status/394483909347381248",
+    "https://twitter.com/cmdrmcbragg/status/390322853544861696",
+    "https://twitter.com/cmdrmcbragg/status/387424756913295361",
+    "https://twitter.com/cmdrmcbragg/status/387424288602456064",
+    "https://twitter.com/cmdrmcbragg/status/362847050401980416",
+    "https://twitter.com/cmdrmcbragg/status/350648782041526274",
+    "https://twitter.com/cmdrmcbragg/status/327398728099037184",
+    "https://twitter.com/cmdrmcbragg/status/319155597633282048",
+    "https://twitter.com/cmdrmcbragg/status/299961547239870464",
+    "https://twitter.com/cmdrmcbragg/status/299580508654931968",
+    "https://twitter.com/cmdrmcbragg/status/298881328517095425",
+    "https://twitter.com/cmdrmcbragg/status/296377241863065600",
+    "https://twitter.com/cmdrmcbragg/status/294485429850341377",
+    "https://twitter.com/cmdrmcbragg/status/290667166162878464",
+    "https://twitter.com/cmdrmcbragg/status/290016574105067521",
+    "https://twitter.com/cmdrmcbragg/status/276409305224335360",
+    "https://twitter.com/cmdrmcbragg/status/274585164548562944",
+    "https://twitter.com/cmdrmcbragg/status/274306399264198656",
+    "https://twitter.com/cmdrmcbragg/status/214830948544544770",
+    "https://twitter.com/cmdrmcbragg/status/213407603441664000",
+    "https://twitter.com/cmdrmcbragg/status/200842454918889473",
+    "https://twitter.com/cmdrmcbragg/status/198469770625036288",
+    "https://twitter.com/cmdrmcbragg/status/185038360950214656",
+    "https://twitter.com/cmdrmcbragg/status/184469171495636993",
+    "https://twitter.com/cmdrmcbragg/status/176777705935749120",
+    "https://twitter.com/cmdrmcbragg/status/176773357679812608",
+    "https://twitter.com/cmdrmcbragg/status/176772008762286080",
+    "https://twitter.com/cmdrmcbragg/status/176771296091324417",
+    "https://twitter.com/cmdrmcbragg/status/175353105741922305",
+    "https://twitter.com/cmdrmcbragg/status/175271724869353472",
+    "https://twitter.com/cmdrmcbragg/status/170244252448722944",
+    "https://twitter.com/cmdrmcbragg/status/170194637338841089",
+    "https://twitter.com/cmdrmcbragg/status/169881524383129600",
+    "https://twitter.com/cmdrmcbragg/status/169145994955587584",
+    "https://twitter.com/cmdrmcbragg/status/165478884278677505",
+    "https://twitter.com/cmdrmcbragg/status/165466646981509120",
+    "https://twitter.com/cmdrmcbragg/status/163024617416564736",
+    "https://twitter.com/cmdrmcbragg/status/162264402224099328",
+    "https://twitter.com/cmdrmcbragg/status/159720439801856001",
+    "https://twitter.com/cmdrmcbragg/status/156952120476700672",
+    "https://twitter.com/cmdrmcbragg/status/154974771132645376",
+    "https://twitter.com/cmdrmcbragg/status/154338026816937984",
+    "https://twitter.com/cmdrmcbragg/status/145204774495719424",
+    "https://twitter.com/cmdrmcbragg/status/132561000380628993",
+    "https://twitter.com/cmdrmcbragg/status/129996555871719424",
+    "https://twitter.com/cmdrmcbragg/status/128879665120157696",
+    "https://twitter.com/cmdrmcbragg/status/126042101300477952",
+    "https://twitter.com/cmdrmcbragg/status/125983427118895104",
+    "https://twitter.com/cmdrmcbragg/status/121965690226876416",
+    "https://twitter.com/cmdrmcbragg/status/117247642253279233",
+    "https://twitter.com/cmdrmcbragg/status/113671408235720704",
+    "https://twitter.com/cmdrmcbragg/status/113651433995370496",
+    "https://twitter.com/cmdrmcbragg/status/113334622670163968",
+    "https://twitter.com/cmdrmcbragg/status/106483599343226880",
+    "https://twitter.com/cmdrmcbragg/status/101756506122354689",
+    "https://twitter.com/cmdrmcbragg/status/83638179525169152",
+    "https://twitter.com/cmdrmcbragg/status/78300009174540288",
+    "https://twitter.com/cmdrmcbragg/status/77504015990136832",
+    "https://twitter.com/cmdrmcbragg/status/77500295541825536",
+    "https://twitter.com/cmdrmcbragg/status/77485353627422720",
+    "https://twitter.com/cmdrmcbragg/status/68420906594205697",
+    "https://twitter.com/cmdrmcbragg/status/68420145642602496",
+    "https://twitter.com/cmdrmcbragg/status/68351649537720320",
+    "https://twitter.com/cmdrmcbragg/status/68339060715954179",
+    "https://twitter.com/cmdrmcbragg/status/66368100207034368",
+    "https://twitter.com/cmdrmcbragg/status/66122398340091904",
+    "https://twitter.com/cmdrmcbragg/status/66108632936361984",
+    "https://twitter.com/cmdrmcbragg/status/66104207584927745",
+    "https://twitter.com/cmdrmcbragg/status/66086025864282112",
+    "https://twitter.com/cmdrmcbragg/status/66085999847030784",
+    "https://twitter.com/cmdrmcbragg/status/66085836369825792",
+    "https://twitter.com/cmdrmcbragg/status/57244915528241153",
+    "https://twitter.com/cmdrmcbragg/status/52390274609057793",
+    "https://twitter.com/cmdrmcbragg/status/51381592400216064",
+    "https://twitter.com/cmdrmcbragg/status/51373662082826240",
+    "https://twitter.com/cmdrmcbragg/status/51373609213624320",
+    "https://twitter.com/cmdrmcbragg/status/51353983989723136",
+    "https://twitter.com/cmdrmcbragg/status/51339663583088640",
+    "https://twitter.com/cmdrmcbragg/status/51336011879428096",
+    "https://twitter.com/cmdrmcbragg/status/51027968180486144",
+    "https://twitter.com/cmdrmcbragg/status/49680516705820673",
+    "https://twitter.com/cmdrmcbragg/status/48118774062260225",
+    "https://twitter.com/cmdrmcbragg/status/47124213416476672",
+    "https://twitter.com/cmdrmcbragg/status/44541379501756416",
+    "https://twitter.com/cmdrmcbragg/status/42548760169029632",
+    "https://twitter.com/cmdrmcbragg/status/42387719829209089",
+    "https://twitter.com/cmdrmcbragg/status/42366350978580480",
+    "https://twitter.com/cmdrmcbragg/status/42352555145179136",
+    "https://twitter.com/cmdrmcbragg/status/42352424287092736",
+    "https://twitter.com/cmdrmcbragg/status/42344687637495808",
+    "https://twitter.com/cmdrmcbragg/status/42320910459482112",
+    "https://twitter.com/cmdrmcbragg/status/42317098738921473",
+    "https://twitter.com/cmdrmcbragg/status/42306861441105920",
+    "https://twitter.com/cmdrmcbragg/status/42306700287545344",
+    "https://twitter.com/cmdrmcbragg/status/42160839590936576",
+    "https://twitter.com/cmdrmcbragg/status/42012937237430272",
+    "https://twitter.com/cmdrmcbragg/status/41935241509748736",
+    "https://twitter.com/cmdrmcbragg/status/41425446587478016",
+    "https://twitter.com/cmdrmcbragg/status/40474375161528320",
+    "https://twitter.com/cmdrmcbragg/status/39765118065709057",
+    "https://twitter.com/cmdrmcbragg/status/39709661359767552",
+    "https://twitter.com/cmdrmcbragg/status/38697203694444544",
+    "https://twitter.com/cmdrmcbragg/status/37557497917087744",
+    "https://twitter.com/cmdrmcbragg/status/37246460831600640",
+    "https://twitter.com/cmdrmcbragg/status/34445460374560768",
+    "https://twitter.com/cmdrmcbragg/status/32530610195013632",
+    "https://twitter.com/cmdrmcbragg/status/32171474122973184",
+    "https://twitter.com/cmdrmcbragg/status/32171185257062401",
+    "https://twitter.com/cmdrmcbragg/status/31880766057095168",
+    "https://twitter.com/cmdrmcbragg/status/29329218852622336",
+    "https://twitter.com/cmdrmcbragg/status/27855342591283200",
+    "https://twitter.com/cmdrmcbragg/status/26824768904757248",
+    "https://twitter.com/cmdrmcbragg/status/26824492080697344",
+    "https://twitter.com/cmdrmcbragg/status/25818323648253953",
+    "https://twitter.com/cmdrmcbragg/status/25758260808126464",
+    "https://twitter.com/cmdrmcbragg/status/25742320783597568",
+    "https://twitter.com/cmdrmcbragg/status/25742240995344384",
+    "https://twitter.com/cmdrmcbragg/status/25678666159628289",
+    "https://twitter.com/cmdrmcbragg/status/25677302167769088",
+    "https://twitter.com/cmdrmcbragg/status/25673123382689792",
+    "https://twitter.com/cmdrmcbragg/status/25622217752584192",
+    "https://twitter.com/cmdrmcbragg/status/25431992577294336",
+    "https://twitter.com/cmdrmcbragg/status/25317886096580609",
+    "https://twitter.com/cmdrmcbragg/status/25317755133624322",
+    "https://twitter.com/cmdrmcbragg/status/24701645522739200",
+    "https://twitter.com/cmdrmcbragg/status/24700407821369344",
+    "https://twitter.com/cmdrmcbragg/status/23981283495378944",
+    "https://twitter.com/cmdrmcbragg/status/23919336712306689",
+    "https://twitter.com/cmdrmcbragg/status/15547993960742912",
+    "https://twitter.com/cmdrmcbragg/status/13844767301439490",
+    "https://twitter.com/cmdrmcbragg/status/13816716932943872",
+    "https://twitter.com/cmdrmcbragg/status/5502304400703488",
+    "https://twitter.com/cmdrmcbragg/status/5502064977256448",
+    "https://twitter.com/cmdrmcbragg/status/5376629706596352",
+    "https://twitter.com/cmdrmcbragg/status/5374703304704000",
+    "https://twitter.com/cmdrmcbragg/status/5116340708835328",
+    "https://twitter.com/cmdrmcbragg/status/4662050320023553",
+    "https://twitter.com/cmdrmcbragg/status/2447355085324288",
+    "https://twitter.com/cmdrmcbragg/status/2447132451672065",
+    "https://twitter.com/cmdrmcbragg/status/717897588547584",
+    "https://twitter.com/cmdrmcbragg/status/717085697114112",
+    "https://twitter.com/cmdrmcbragg/status/381985264504833",
+    "https://twitter.com/cmdrmcbragg/status/29406618414",
+    "https://twitter.com/cmdrmcbragg/status/27774253343",
+    "https://twitter.com/cmdrmcbragg/status/27489554419",
+    "https://twitter.com/cmdrmcbragg/status/27150341603",
+    "https://twitter.com/cmdrmcbragg/status/26010439222",
+    "https://twitter.com/cmdrmcbragg/status/25814197000",
+    "https://twitter.com/cmdrmcbragg/status/25722988911",
+    "https://twitter.com/cmdrmcbragg/status/24008948155",
+    "https://twitter.com/cmdrmcbragg/status/22031787270",
+    "https://twitter.com/cmdrmcbragg/status/21668433503",
+    "https://twitter.com/cmdrmcbragg/status/20270247903",
+    "https://twitter.com/cmdrmcbragg/status/20253099127",
+    "https://twitter.com/cmdrmcbragg/status/17380660979",
+    "https://twitter.com/cmdrmcbragg/status/15276071366",
+    "https://twitter.com/cmdrmcbragg/status/15198373482",
+    "https://twitter.com/cmdrmcbragg/status/15194613032",
+    "https://twitter.com/cmdrmcbragg/status/15194601045",
+    "https://twitter.com/cmdrmcbragg/status/14922326305",
+    "https://twitter.com/cmdrmcbragg/status/14922299362",
+    "https://twitter.com/cmdrmcbragg/status/14449228335",
+    "https://twitter.com/cmdrmcbragg/status/14239701978",
+    "https://twitter.com/cmdrmcbragg/status/14064945985",
+    "https://twitter.com/cmdrmcbragg/status/14063865370",
+    "https://twitter.com/cmdrmcbragg/status/14061670245",
+    "https://twitter.com/cmdrmcbragg/status/14061631342",
+    "https://twitter.com/cmdrmcbragg/status/14059373200",
+    "https://twitter.com/cmdrmcbragg/status/13950245494",
+    "https://twitter.com/cmdrmcbragg/status/13497582177",
+    "https://twitter.com/cmdrmcbragg/status/13497541191",
+    "https://twitter.com/cmdrmcbragg/status/13496653767",
+    "https://twitter.com/cmdrmcbragg/status/13496535491",
+    "https://twitter.com/cmdrmcbragg/status/13496404647",
+    "https://twitter.com/cmdrmcbragg/status/13496254231",
+    "https://twitter.com/cmdrmcbragg/status/13496003751",
+    "https://twitter.com/cmdrmcbragg/status/13495749150",
+    "https://twitter.com/cmdrmcbragg/status/13495594032",
+    "https://twitter.com/cmdrmcbragg/status/13488597340",
+    "https://twitter.com/cmdrmcbragg/status/13485451551",
+    "https://twitter.com/cmdrmcbragg/status/13451365341",
+    "https://twitter.com/cmdrmcbragg/status/13450523291",
+    "https://twitter.com/cmdrmcbragg/status/13450163678",
+    "https://twitter.com/cmdrmcbragg/status/13326996312",
+    "https://twitter.com/cmdrmcbragg/status/13204017344",
+    "https://twitter.com/cmdrmcbragg/status/12717272854",
+    "https://twitter.com/cmdrmcbragg/status/12592794915",
+    "https://twitter.com/cmdrmcbragg/status/12488376282",
+    "https://twitter.com/cmdrmcbragg/status/12169486741",
+    "https://twitter.com/cmdrmcbragg/status/11496056599",
+    "https://twitter.com/cmdrmcbragg/status/11496042631",
+    "https://twitter.com/cmdrmcbragg/status/11372392656",
+    "https://twitter.com/cmdrmcbragg/status/10039969902",
+    "https://twitter.com/cmdrmcbragg/status/9986830225",
+    "https://twitter.com/cmdrmcbragg/status/9946099280",
+    "https://twitter.com/cmdrmcbragg/status/9945891344",
+    "https://twitter.com/cmdrmcbragg/status/7449206315",
+    "https://twitter.com/cmdrmcbragg/status/6906807570",
+    "https://twitter.com/cmdrmcbragg/status/6900512866",
+    "https://twitter.com/cmdrmcbragg/status/6808925522",
+    "https://twitter.com/cmdrmcbragg/status/6808892005",
+    "https://twitter.com/cmdrmcbragg/status/6741824779",
+    "https://twitter.com/cmdrmcbragg/status/6735807708",
+    "https://twitter.com/cmdrmcbragg/status/6723909765",
+    "https://twitter.com/cmdrmcbragg/status/6722216042",
+    "https://twitter.com/cmdrmcbragg/status/6721820339",
+    "https://twitter.com/cmdrmcbragg/status/6721457154"
+        ];
+
+        // Track previously shown tweets
+        const shownTweets = new Set();
+
+        // Event listener for button
+        document.getElementById('show-tweet-button').addEventListener('click', displayTweet);
+
+        // Function to get a random tweet and avoid duplicates
+        function getRandomTweet() {
+            if (shownTweets.size === tweets.length) {
+                shownTweets.clear(); // Reset if all tweets are shown
+            }
+
+            let tweet;
+            do {
+                tweet = tweets[Math.floor(Math.random() * tweets.length)];
+            } while (shownTweets.has(tweet));
+
+            shownTweets.add(tweet);
+            return tweet;
+        }
+
+        // Function to display the tweet
+        function displayTweet() {
+            const tweetURL = getRandomTweet();
+            const tweetDisplay = document.getElementById('tweet-display');
+
+            // Clear existing content
+            tweetDisplay.innerHTML = '';
+
+            // Create and embed tweet iframe
+            const tweetEmbed = document.createElement('blockquote');
+            tweetEmbed.className = 'twitter-tweet';
+            tweetEmbed.style.margin = '0 auto'; // Center alignment for the blockquote
+            tweetEmbed.innerHTML = `<a href="${tweetURL}"></a>`;
+
+            tweetDisplay.appendChild(tweetEmbed);
+
+            // Trigger Twitter embed script
+            if (window.twttr && window.twttr.widgets) {
+                twttr.widgets.load(tweetDisplay);
+            } else {
+                // If Twitter script is not loaded, load it dynamically
+                const twitterScript = document.createElement('script');
+                twitterScript.src = 'https://platform.twitter.com/widgets.js';
+                twitterScript.async = true;
+                document.body.appendChild(twitterScript);
+
+                twitterScript.onload = () => twttr.widgets.load(tweetDisplay);
+            }
+        }
+    </script>
+</body>
+</html>
